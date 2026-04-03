@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ancient Times — Juhi's History Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f5e6c8;
+    --parchment-dark: #e8d5a3;
+    --ink: #2c1810;
+    --ink-faded: #5a3e2b;
+    --red-seal: #8b1a1a;
+    --gold: #c9a227;
+    --gold-light: #f0d080;
+    --aged: #b8860b;
+    --shadow: rgba(44, 24, 16, 0.3);
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: #1a0f08;
+font-family: ‘Libre Baskerville’, serif;
+color: var(–ink);
+overflow-x: hidden;
+cursor: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘24’ height=‘24’ viewBox=‘0 0 24 24’%3E%3Cpath fill=’%238b1a1a’ d=‘M4 2l2 8-4 3 6 1 2 8 2-8 6-1-4-3z’/%3E%3C/svg%3E”) 12 12, auto;
+}
+
+/* –– NOISE TEXTURE OVERLAY –– */
+body::before {
+content: ‘’;
+position: fixed; inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘200’ height=‘200’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘200’ height=‘200’ filter=‘url(%23n)’ opacity=‘0.06’/%3E%3C/svg%3E”);
+pointer-events: none; z-index: 9999; opacity: 0.4;
+}
+
+/* –– HERO MASTHEAD –– */
+.masthead {
+background: var(–parchment);
+background-image:
+radial-gradient(ellipse at 20% 50%, rgba(201,162,39,0.15) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 50%, rgba(139,26,26,0.08) 0%, transparent 60%),
+repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(44,24,16,0.04) 28px, rgba(44,24,16,0.04) 29px);
+border-bottom: 4px double var(–ink);
+position: relative;
+padding: 0;
+overflow: hidden;
+}
+
+.masthead-border {
+border: 2px solid var(–ink);
+margin: 12px;
+padding: 24px 20px 18px;
+position: relative;
+}
+
+.masthead-border::before, .masthead-border::after {
+content: ‘✦’;
+position: absolute; top: -12px;
+font-size: 20px; color: var(–red-seal);
+background: var(–parchment);
+padding: 0 6px;
+}
+.masthead-border::before { left: 20px; }
+.masthead-border::after { right: 20px; }
+
+.edition-line {
+text-align: center;
+font-family: ‘IM Fell English’, serif;
+font-size: 11px;
+letter-spacing: 3px;
+color: var(–ink-faded);
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+
+.masthead h1 {
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: clamp(2rem, 6vw, 4.5rem);
+font-weight: 700;
+text-align: center;
+color: var(–ink);
+line-height: 1.1;
+text-shadow: 2px 2px 0 rgba(201,162,39,0.4);
+letter-spacing: -1px;
+}
+
+.masthead-sub {
+font-family: ‘Playfair Display’, serif;
+font-style: italic;
+text-align: center;
+font-size: clamp(0.9rem, 2vw, 1.2rem);
+color: var(–red-seal);
+margin-top: 4px;
+}
+
+.masthead-divider {
+display: flex; align-items: center; gap: 10px;
+margin: 12px 0 10px;
+}
+.masthead-divider span { flex: 1; height: 1px; background: var(–ink); }
+.masthead-divider em { font-family: ‘IM Fell English’, serif; font-size: 13px; color: var(–ink-faded); white-space: nowrap; }
+
+.date-bar {
+display: flex; justify-content: space-between; align-items: center;
+font-family: ‘IM Fell English’, serif; font-size: 12px; color: var(–ink-faded);
+padding-top: 8px; border-top: 1px solid rgba(44,24,16,0.2);
+}
+
+.price-badge {
+background: var(–red-seal); color: var(–parchment);
+padding: 2px 10px; font-family: ‘Cinzel Decorative’, cursive;
+font-size: 10px; letter-spacing: 1px;
+}
+
+/* –– NAV TABS –– */
+.nav-strip {
+background: var(–ink);
+display: flex; justify-content: center; gap: 0;
+overflow-x: auto; border-bottom: 3px solid var(–gold);
+}
+
+.nav-strip button {
+background: none; border: none;
+color: var(–parchment-dark);
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 11px; letter-spacing: 1px;
+padding: 12px 18px;
+cursor: pointer;
+transition: all 0.2s;
+border-right: 1px solid rgba(255,255,255,0.1);
+white-space: nowrap;
+}
+.nav-strip button:hover, .nav-strip button.active {
+background: var(–red-seal); color: var(–gold-light);
+}
+
+/* –– MAIN CONTENT –– */
+.newspaper {
+max-width: 1100px; margin: 0 auto;
+padding: 20px 16px;
+}
+
+/* –– SECTION PANELS –– */
+.section-panel {
+display: none;
+animation: fadeIn 0.4s ease;
+}
+.section-panel.active { display: block; }
+
+@keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: none; } }
+
+/* –– FRONT PAGE GRID –– */
+.front-grid {
+display: grid;
+grid-template-columns: 2fr 1fr;
+grid-template-rows: auto auto auto;
+gap: 0;
+border: 2px solid var(–ink);
+background: var(–parchment);
+background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(44,24,16,0.04) 28px, rgba(44,24,16,0.04) 29px);
+}
+
+.headline-story {
+grid-column: 1;
+padding: 20px;
+border-right: 2px solid var(–ink);
+border-bottom: 2px solid var(–ink);
+}
+
+.sidebar-col {
+grid-column: 2;
+grid-row: 1 / 3;
+}
+
+.sidebar-top {
+padding: 16px;
+border-bottom: 2px solid var(–ink);
+}
+
+.full-row {
+grid-column: 1 / -1;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+}
+
+.col-card {
+padding: 16px;
+border-right: 2px solid var(–ink);
+}
+.col-card:last-child { border-right: none; }
+
+.kicker {
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 9px; letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–red-seal);
+display: block; margin-bottom: 6px;
+}
+
+.headline {
+font-family: ‘Playfair Display’, serif;
+font-weight: 900;
+font-size: clamp(1.3rem, 3vw, 2rem);
+line-height: 1.2;
+color: var(–ink);
+margin-bottom: 10px;
+}
+
+.sub-headline {
+font-family: ‘Playfair Display’, serif;
+font-style: italic;
+font-size: 1rem;
+color: var(–ink-faded);
+margin-bottom: 12px;
+line-height: 1.4;
+}
+
+.story-text {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 0.82rem;
+line-height: 1.7;
+color: var(–ink);
+column-count: 2; column-gap: 20px;
+}
+
+.story-text-single {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 0.82rem;
+line-height: 1.7;
+color: var(–ink);
+}
+
+.col-head {
+font-family: ‘Playfair Display’, serif;
+font-weight: 700;
+font-size: 1rem;
+color: var(–ink);
+margin-bottom: 8px;
+padding-bottom: 6px;
+border-bottom: 1px solid var(–ink);
+}
+
+/* –– EMOJI ILLUSTRATIONS –– */
+.big-emoji {
+font-size: clamp(3rem, 8vw, 6rem);
+text-align: center;
+display: block;
+margin: 10px auto;
+filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.25));
+animation: floatEmoji 4s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+0%, 100% { transform: translateY(0) rotate(-2deg); }
+50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* –– FUN FACTS TICKER –– */
+.ticker-wrap {
+background: var(–red-seal);
+overflow: hidden;
+white-space: nowrap;
+padding: 8px 0;
+border-top: 2px solid var(–gold);
+border-bottom: 2px solid var(–gold);
+}
+.ticker-label {
+display: inline-block;
+background: var(–gold);
+color: var(–ink);
+padding: 0 14px;
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 10px; letter-spacing: 2px;
+font-weight: 700;
+margin-right: 20px;
+}
+.ticker-inner {
+display: inline-block;
+animation: ticker 45s linear infinite;
+color: var(–parchment);
+font-family: ‘IM Fell English’, serif;
+font-size: 13px;
+letter-spacing: 1px;
+}
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* –– QUIZ SECTION –– */
+.quiz-wrapper {
+background: var(–parchment);
+background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(44,24,16,0.04) 28px, rgba(44,24,16,0.04) 29px);
+border: 2px solid var(–ink);
+max-width: 700px;
+margin: 20px auto;
+padding: 30px;
+position: relative;
+}
+
+.quiz-wrapper::before {
+content: ‘📜 OFFICIAL ORACLE EXAMINATION 📜’;
+position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+background: var(–parchment);
+padding: 0 12px;
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 10px; letter-spacing: 1px;
+color: var(–red-seal);
+white-space: nowrap;
+}
+
+.quiz-progress {
+display: flex; gap: 6px; margin-bottom: 20px; justify-content: center;
+}
+.quiz-pip {
+width: 10px; height: 10px;
+border: 2px solid var(–ink); border-radius: 50%;
+background: transparent; transition: background 0.3s;
+}
+.quiz-pip.done { background: var(–red-seal); }
+.quiz-pip.current { background: var(–gold); }
+
+.quiz-q {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.1rem; font-weight: 700;
+color: var(–ink); margin-bottom: 18px;
+text-align: center; line-height: 1.4;
+}
+
+.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.quiz-btn {
+background: var(–parchment-dark);
+border: 2px solid var(–ink-faded);
+padding: 12px 10px;
+font-family: ‘Libre Baskerville’, serif;
+font-size: 0.8rem;
+color: var(–ink); cursor: pointer;
+transition: all 0.2s; text-align: left;
+line-height: 1.4;
+}
+
+.quiz-btn:hover { background: var(–ink); color: var(–parchment); transform: translateY(-2px); box-shadow: 3px 3px 0 var(–ink-faded); }
+.quiz-btn.correct { background: #2d5a27; color: white; border-color: #2d5a27; }
+.quiz-btn.wrong { background: var(–red-seal); color: white; border-color: var(–red-seal); }
+.quiz-btn:disabled { cursor: default; transform: none; }
+
+.quiz-result-msg {
+text-align: center;
+font-family: ‘Playfair Display’, serif;
+font-style: italic;
+font-size: 1rem;
+padding: 12px;
+margin-top: 14px;
+border: 1px dashed var(–ink-faded);
+min-height: 50px;
+color: var(–ink);
+display: none;
+}
+
+.quiz-next-btn {
+display: block; margin: 14px auto 0;
+background: var(–red-seal); color: var(–parchment);
+border: 2px solid var(–ink); padding: 10px 28px;
+font-family: ‘Cinzel Decorative’, cursive; font-size: 11px;
+letter-spacing: 2px; cursor: pointer;
+transition: all 0.2s; display: none;
+}
+.quiz-next-btn:hover { background: var(–ink); }
+
+.score-display {
+text-align: center;
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 1.4rem;
+color: var(–red-seal);
+margin: 20px 0;
+}
+
+/* –– TIMELINE –– */
+.timeline-wrap {
+background: var(–parchment);
+border: 2px solid var(–ink);
+padding: 24px;
+background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(44,24,16,0.04) 28px, rgba(44,24,16,0.04) 29px);
+}
+
+.timeline {
+position: relative;
+padding-left: 60px;
+}
+
+.timeline::before {
+content: ‘’;
+position: absolute; left: 20px; top: 0; bottom: 0;
+width: 3px; background: var(–aged);
+}
+
+.t-event {
+position: relative;
+margin-bottom: 24px;
+cursor: pointer;
+transition: transform 0.2s;
+}
+.t-event:hover { transform: translateX(4px); }
+
+.t-dot {
+position: absolute;
+left: -48px; top: 4px;
+width: 20px; height: 20px;
+border-radius: 50%;
+background: var(–red-seal);
+border: 3px solid var(–parchment);
+box-shadow: 0 0 0 2px var(–ink);
+display: flex; align-items: center; justify-content: center;
+font-size: 9px; color: white;
+}
+
+.t-year {
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 10px; letter-spacing: 1px;
+color: var(–aged);
+display: block; margin-bottom: 2px;
+}
+
+.t-title {
+font-family: ‘Playfair Display’, serif;
+font-weight: 700; font-size: 1rem;
+color: var(–ink); margin-bottom: 4px;
+}
+
+.t-desc {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 0.78rem; color: var(–ink-faded);
+line-height: 1.5;
+}
+
+.t-funny {
+display: none;
+margin-top: 8px;
+padding: 8px 12px;
+background: rgba(201,162,39,0.15);
+border-left: 3px solid var(–gold);
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+font-size: 0.82rem;
+color: var(–ink);
+animation: fadeIn 0.3s ease;
+}
+.t-event.open .t-funny { display: block; }
+
+/* –– ARTIFACT MUSEUM –– */
+.museum-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 16px;
+padding: 10px;
+}
+
+.artifact-card {
+background: var(–parchment);
+border: 2px solid var(–ink);
+padding: 16px;
+text-align: center;
+cursor: pointer;
+transition: all 0.25s;
+position: relative;
+overflow: hidden;
+}
+
+.artifact-card::after {
+content: ‘TAP TO INSPECT’;
+position: absolute; inset: 0;
+background: rgba(44,24,16,0.88);
+color: var(–gold);
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 10px; letter-spacing: 2px;
+display: flex; align-items: center; justify-content: center;
+opacity: 0; transition: opacity 0.25s;
+}
+.artifact-card:hover::after { opacity: 1; }
+
+.artifact-emoji { font-size: 3rem; display: block; margin-bottom: 10px; }
+
+.artifact-name {
+font-family: ‘Playfair Display’, serif;
+font-weight: 700; font-size: 0.9rem;
+color: var(–ink); margin-bottom: 4px;
+}
+
+.artifact-origin {
+font-family: ‘IM Fell English’, serif;
+font-style: italic; font-size: 0.75rem;
+color: var(–aged);
+}
+
+/* –– MODAL –– */
+.modal-overlay {
+position: fixed; inset: 0;
+background: rgba(10,5,2,0.85);
+display: flex; align-items: center; justify-content: center;
+z-index: 1000;
+opacity: 0; pointer-events: none;
+transition: opacity 0.3s;
+padding: 20px;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal-box {
+background: var(–parchment);
+background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(44,24,16,0.04) 28px, rgba(44,24,16,0.04) 29px);
+border: 3px double var(–ink);
+max-width: 520px; width: 100%;
+padding: 32px;
+position: relative;
+transform: scale(0.9) rotate(-1deg);
+transition: transform 0.3s;
+max-height: 80vh; overflow-y: auto;
+}
+.modal-overlay.open .modal-box { transform: scale(1) rotate(0deg); }
+
+.modal-close {
+position: absolute; top: 10px; right: 14px;
+background: none; border: none;
+font-size: 22px; cursor: pointer; color: var(–ink);
+}
+
+.modal-emoji { font-size: 4rem; text-align: center; display: block; margin-bottom: 16px; }
+.modal-title {
+font-family: ‘Playfair Display’, serif;
+font-weight: 900; font-size: 1.4rem;
+text-align: center; color: var(–ink);
+margin-bottom: 6px;
+}
+.modal-origin {
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 9px; letter-spacing: 2px;
+color: var(–aged); text-align: center;
+display: block; margin-bottom: 16px;
+}
+.modal-body {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 0.85rem; line-height: 1.75;
+color: var(–ink);
+}
+.modal-funny {
+margin-top: 16px; padding: 12px 16px;
+background: rgba(139,26,26,0.07);
+border-left: 4px solid var(–red-seal);
+font-family: ‘IM Fell English’, serif;
+font-style: italic; font-size: 0.9rem;
+color: var(–ink);
+}
+
+/* –– SCROLLS: DID YOU KNOW –– */
+.scroll-facts {
+display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 16px;
+}
+
+.scroll-card {
+background: var(–parchment);
+border: 2px solid var(–ink);
+padding: 20px;
+position: relative;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+.scroll-card:hover { transform: translateY(-4px) rotate(0.5deg); box-shadow: 4px 4px 0 var(–ink); }
+
+.scroll-card::before {
+content: attr(data-num);
+position: absolute; top: -14px; left: 16px;
+background: var(–red-seal); color: var(–parchment);
+width: 28px; height: 28px;
+border-radius: 50%; font-family: ‘Cinzel Decorative’, cursive;
+font-size: 10px; display: flex; align-items: center; justify-content: center;
+border: 2px solid var(–ink);
+}
+
+.scroll-icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+.scroll-fact-text {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 0.82rem; line-height: 1.6;
+color: var(–ink);
+}
+.scroll-civ {
+margin-top: 10px;
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 8px; letter-spacing: 2px;
+color: var(–aged); text-transform: uppercase;
+}
+
+/* –– JUHI BADGE –– */
+.juhi-seal {
+position: fixed; bottom: 20px; right: 20px;
+width: 70px; height: 70px;
+background: var(–red-seal);
+border-radius: 50%;
+border: 3px solid var(–gold);
+display: flex; align-items: center; justify-content: center;
+flex-direction: column;
+cursor: pointer;
+z-index: 100;
+box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+transition: transform 0.3s, box-shadow 0.3s;
+animation: sealPulse 3s ease-in-out infinite;
+}
+.juhi-seal:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
+@keyframes sealPulse { 0%,100% { box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 0 0 rgba(201,162,39,0.4); } 50% { box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 0 10px rgba(201,162,39,0); } }
+
+.seal-text {
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 7px; color: var(–gold);
+text-align: center; line-height: 1.3; letter-spacing: 0.5px;
+}
+
+/* –– SECTION HEADERS –– */
+.section-head {
+background: var(–parchment);
+border: 2px solid var(–ink);
+padding: 16px 20px;
+margin-bottom: 16px;
+display: flex; align-items: center; gap: 12px;
+background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(44,24,16,0.04) 28px, rgba(44,24,16,0.04) 29px);
+}
+.section-head-title {
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: clamp(1rem, 3vw, 1.5rem);
+color: var(–ink);
+}
+.section-head-line { flex: 1; height: 2px; background: var(–gold); }
+
+/* –– DIVIDERS –– */
+.ornament-div {
+text-align: center;
+color: var(–aged);
+font-size: 1.2rem;
+margin: 16px 0;
+letter-spacing: 8px;
+}
+
+/* –– SEAL STAMPS –– */
+.stamp {
+display: inline-block;
+border: 3px solid var(–red-seal);
+color: var(–red-seal);
+padding: 4px 10px;
+font-family: ‘Cinzel Decorative’, cursive;
+font-size: 9px; letter-spacing: 2px;
+transform: rotate(-4deg);
+opacity: 0.8;
+}
+
+/* –– RESPONSIVE –– */
+@media (max-width: 700px) {
+.front-grid { grid-template-columns: 1fr; }
+.sidebar-col { grid-column: 1; grid-row: auto; border-right: none !important; border-top: 2px solid var(–ink); }
+.headline-story { border-right: none; }
+.story-text { column-count: 1; }
+.full-row { grid-template-columns: 1fr; }
+.col-card { border-right: none !important; border-bottom: 2px solid var(–ink); }
+.quiz-options { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- MASTHEAD -->
+
+<header class="masthead">
+  <div class="masthead-border">
+    <div class="edition-line">Est. 3000 BCE &nbsp;·&nbsp; Volume MMXXV &nbsp;·&nbsp; Curated for Scholars of Distinction</div>
+    <h1>The Ancient Times</h1>
+    <div class="masthead-sub">"All the History That's Fit to Print (and Some That Isn't)"</div>
+    <div class="masthead-divider">
+      <span></span>
+      <em>✦ &nbsp; Dedicated to Juhi Jha, Master of Histories &nbsp; ✦</em>
+      <span></span>
+    </div>
+    <div class="date-bar">
+      <span>🏛️ From Mesopotamia to Marvel</span>
+      <span class="price-badge">FREE · FOR JUHI</span>
+      <span>Papyrus Edition 📜</span>
+    </div>
+  </div>
+</header>
+
+<!-- TICKER -->
+
+<div class="ticker-wrap">
+  <div style="display:inline-flex; align-items:center; width:100%;">
+    <span class="ticker-label">BREAKING NEWS</span>
+    <div class="ticker-inner">
+      ⚡ CLEOPATRA LIVED CLOSER TO THE MOON LANDING THAN TO THE BUILDING OF THE GREAT PYRAMID &nbsp;&nbsp;·&nbsp;&nbsp;
+      🦁 ANCIENT EGYPTIANS SHAVED OFF THEIR EYEBROWS WHEN THEIR CAT DIED &nbsp;&nbsp;·&nbsp;&nbsp;
+      🧪 ROMANS USED CRUSHED MOUSE BRAINS AS TOOTHPASTE (DENTIST HATES THIS ONE TRICK) &nbsp;&nbsp;·&nbsp;&nbsp;
+      ⚔️ ALEXANDER THE GREAT WAS POSSIBLY BURIED ALIVE — HIS BODY DIDN'T DECOMPOSE FOR 6 DAYS &nbsp;&nbsp;·&nbsp;&nbsp;
+      🍺 ANCIENT EGYPTIANS PAID WORKERS IN BEER &nbsp;&nbsp;·&nbsp;&nbsp;
+      📮 JULIUS CAESAR WAS KIDNAPPED BY PIRATES AND LAUGHED AT THE RANSOM THEY ASKED &nbsp;&nbsp;·&nbsp;&nbsp;
+      🐍 CLEOPATRA'S LAST PERFORMANCE REVIEWED: "DRAMATIC, 10/10" &nbsp;&nbsp;·&nbsp;&nbsp;
+      🌊 THE VIKINGS HAD FANTASTIC PERSONAL HYGIENE — COMBS, TWEEZERS, EAR SCOOPS &nbsp;&nbsp;·&nbsp;&nbsp;
+      ⚡ CLEOPATRA LIVED CLOSER TO THE MOON LANDING THAN TO THE BUILDING OF THE GREAT PYRAMID &nbsp;&nbsp;·&nbsp;&nbsp;
+      🦁 ANCIENT EGYPTIANS SHAVED OFF THEIR EYEBROWS WHEN THEIR CAT DIED &nbsp;&nbsp;·&nbsp;&nbsp;
+      🧪 ROMANS USED CRUSHED MOUSE BRAINS AS TOOTHPASTE &nbsp;&nbsp;·&nbsp;&nbsp;
+      🍺 ANCIENT EGYPTIANS PAID WORKERS IN BEER
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+
+<nav class="nav-strip">
+  <button class="active" onclick="showSection('front', this)">📰 Front Page</button>
+  <button onclick="showSection('quiz', this)">🧠 Quiz Scroll</button>
+  <button onclick="showSection('timeline', this)">⏳ Time Scroll</button>
+  <button onclick="showSection('museum', this)">🏺 Artifact Museum</button>
+  <button onclick="showSection('facts', this)">💡 Weirdo Facts</button>
+</nav>
+
+<!-- NEWSPAPER BODY -->
+
+<div style="background:#1a0f08; padding: 16px 0;">
+<div class="newspaper">
+
+  <!-- FRONT PAGE -->
+
+  <div id="section-front" class="section-panel active">
+    <div class="front-grid">
+
+```
+  <!-- MAIN STORY -->
+  <div class="headline-story">
+    <span class="kicker">⚡ Exclusive Investigation</span>
+    <h2 class="headline">Caesar's Killers Had Very Poor Event Planning</h2>
+    <div class="sub-headline">Sources confirm the Senate meeting had a strict "No Weapons" policy that senators apparently didn't read</div>
+    <div class="ornament-div">— ⚔ ⚔ ⚔ —</div>
+    <div class="story-text">
+      <p>ROME, 44 BCE — In what historians have called "the most disorganised coup in recorded history," sixty senators stabbed Julius Caesar twenty-three times on the Ides of March, despite the fact that literally everyone had been warned. The fortune-teller Spurinna had explicitly cautioned Caesar to "beware the Ides of March," which most HR departments would consider adequate notice.</p>
+      <br>
+      <p>Caesar, allegedly dismissive of warnings, reportedly waved off his wife Calpurnia's concerns about the whole "dying today" situation. When Brutus — reportedly his close friend — joined the stabbing, Caesar is famously said to have uttered "Et tu, Brute?" — Latin for "Not you too, mate?"</p>
+      <br>
+      <p>Of the twenty-three stab wounds, only one was fatal, leading historians to speculate that Roman senators needed significantly better aim or perhaps a group therapy session to improve coordination. Caesar's ghost was reportedly spotted walking around looking confused for several years afterward.</p>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar-col">
+    <div class="sidebar-top">
+      <span class="kicker">📊 Today's Imperial Index</span>
+      <div class="col-head" style="font-size:0.85rem;">Civilisation Ratings</div>
+      <div style="font-family:'IM Fell English',serif; font-size:0.8rem; line-height:2; color:var(--ink-faded);">
+        🏛️ Roman Plumbing ........ ★★★★★<br>
+        🐱 Egyptian Cat Laws .... ★★★★★<br>
+        ⚔️ Viking Table Manners .. ★★☆☆☆<br>
+        🤔 Greek Democracy ...... ★★★☆☆<br>
+        &nbsp;&nbsp;<em style="font-size:0.7rem;">(women not counted)</em><br>
+        🍕 Roman Fast Food ....... ★★★★☆<br>
+        🦷 Roman Dentistry ....... ★☆☆☆☆<br>
+        &nbsp;&nbsp;<em style="font-size:0.7rem;">(see mouse brain story)</em>
+      </div>
+      <div class="ornament-div" style="font-size:0.9rem; letter-spacing:4px;">— ◆ —</div>
+      <div class="col-head" style="font-size:0.85rem;">Juhi's Horoscope</div>
+      <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:0.8rem; line-height:1.6; color:var(--ink-faded);">
+        "The Oracle of Delphi consulted the sacred vapours and declares: Your future is bright, your historical knowledge formidable, and someone very much admires you. Avoid senators bearing gifts."
+      </div>
+      <div style="text-align:center; margin-top:10px;">
+        <span class="stamp">VERIFIED BY ORACLE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="full-row">
+    <div class="col-card">
+      <span class="kicker">🦁 Lifestyle</span>
+      <div class="col-head">Pharaoh Ramesses II Refuses to Age: "It's Called Mummification, Look It Up"</div>
+      <span class="big-emoji" style="font-size:2.5rem; animation-delay:0.5s;">🐪</span>
+      <p class="story-text-single">The longest-reigning pharaoh of Egypt, Ramesses II, reportedly ruled for 66 years and fathered approximately 100 children. Medical experts examining his mummy found evidence of arthritis, bad circulation, and what one historian described as "an absolutely heroic amount of hairgel made from animal fat."</p>
+    </div>
+    <div class="col-card">
+      <span class="kicker">🏺 Arts & Culture</span>
+      <div class="col-head">Review: The Colosseum Opens — "Loud, Bloody, Sold Out"</div>
+      <span class="big-emoji" style="font-size:2.5rem; animation-delay:1s;">🗡️</span>
+      <p class="story-text-single">The new entertainment complex opened to rave reviews from the Roman public this year (80 AD), boasting 50,000 seats, a retractable awning for shade, and absolutely zero refund policy. Lions rated 4/5 stars. Gladiators described the experience as "very much not ideal." Emperor Titus reportedly threw in free food and wine, raising questions about work-life balance.</p>
+    </div>
+    <div class="col-card">
+      <span class="kicker">🌊 Shipping & Trade</span>
+      <div class="col-head">Silk Road Opens: Merchants Report "It's Longer Than the Name Suggests"</div>
+      <span class="big-emoji" style="font-size:2.5rem; animation-delay:1.5s;">🐫</span>
+      <p class="story-text-single">The 4,000-mile trade route connecting China to the Mediterranean opened amid much fanfare and some serious logistical questions. Camel unions have not yet commented. Silk, spices, and the Bubonic Plague were among the route's most impactful exports, with historians rating the first two significantly higher than the third.</p>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- QUIZ SECTION -->
+
+  <div id="section-quiz" class="section-panel">
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-title">🧠 The Oracle's Examination</div>
+      <div class="section-head-line"></div>
+    </div>
+    <div class="quiz-wrapper" id="quizBox">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-options" id="quizOpts"></div>
+      <div class="quiz-result-msg" id="quizMsg"></div>
+      <button class="quiz-next-btn" id="quizNext" onclick="nextQuestion()">Next Scroll →</button>
+    </div>
+  </div>
+
+  <!-- TIMELINE SECTION -->
+
+  <div id="section-timeline" class="section-panel">
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-title">⏳ The Scroll of Time</div>
+      <div class="section-head-line"></div>
+    </div>
+    <p style="font-family:'IM Fell English',serif; font-style:italic; color:var(--parchment-dark); text-align:center; margin-bottom:16px; font-size:0.9rem;">Click any event to reveal the classified footnote 👇</p>
+    <div class="timeline-wrap">
+      <div class="timeline" id="timelineEl"></div>
+    </div>
+  </div>
+
+  <!-- MUSEUM SECTION -->
+
+  <div id="section-museum" class="section-panel">
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-title">🏺 The Ancient Artifact Museum</div>
+      <div class="section-head-line"></div>
+    </div>
+    <p style="font-family:'IM Fell English',serif; font-style:italic; color:var(--parchment-dark); text-align:center; margin-bottom:16px; font-size:0.9rem;">Hover & click to inspect each artefact 🔍</p>
+    <div class="museum-grid" id="museumGrid"></div>
+  </div>
+
+  <!-- WEIRDO FACTS -->
+
+  <div id="section-facts" class="section-panel">
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-title">💡 Facts Your Professor Didn't Tell You</div>
+      <div class="section-head-line"></div>
+    </div>
+    <div class="scroll-facts" id="factsGrid"></div>
+  </div>
+
+</div>
+</div>
+
+<!-- JUHI SEAL -->
+
+<div class="juhi-seal" onclick="showJuhiModal()" title="A message for Juhi!">
+  <span style="font-size:20px;">📜</span>
+  <span class="seal-text">For<br>Juhi</span>
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <span class="modal-emoji" id="modalEmoji"></span>
+    <div class="modal-title" id="modalTitle"></div>
+    <span class="modal-origin" id="modalOrigin"></span>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-funny" id="modalFunny"></div>
+  </div>
+</div>
+
+<script>
+// ---- DATA ----
+const quizData = [
+  {
+    q: "🏛️ Julius Caesar was kidnapped by pirates and told them the ransom was too LOW. What did he do after being released?",
+    opts: ["Sued them in Roman court", "Hunted them down and crucified them", "Wrote them a strongly worded scroll", "Sent them a fruit basket"],
+    ans: 1,
+    right: "🎯 Correct! Caesar raised a private fleet, hunted the pirates down, and crucified them — but true to his word, he slit their throats first so it wouldn't hurt as much. Charming.",
+    wrong: "❌ Nope! Caesar hunted them down and crucified them — but kindly slit their throats first. Ancient history's most menacing 'I told you so.'"
+  },
+  {
+    q: "🐱 In Ancient Egypt, what happened if you accidentally killed a cat?",
+    opts: ["You got a fine", "You were sentenced to death", "You had to replace it", "You were exiled for a week"],
+    ans: 1,
+    right: "💀 Correct! Killing a cat — even accidentally — was punishable by death in ancient Egypt. The cats knew this. They were insufferable about it.",
+    wrong: "❌ Wrong! It was death! The Egyptians truly did not mess around with their cats. (Cats haven't changed much, honestly.)"
+  },
+  {
+    q: "🧠 Aristotle believed the brain was used for what primary purpose?",
+    opts: ["Thinking and reason", "Cooling the blood", "Storing memories", "Controlling emotions"],
+    ans: 1,
+    right: "🧊 Correct! Aristotle thought the brain was basically a radiator for cooling the blood. The heart did the thinking, obviously. He was very smart. Mostly.",
+    wrong: "❌ Wrong! Aristotle believed the brain COOLED THE BLOOD. The heart did all the thinking. He did not think this through — ironically."
+  },
+  {
+    q: "🏺 The Great Wall of China was built using what unusual ingredient in its mortar?",
+    opts: ["Animal blood", "Sticky rice soup", "Egg whites", "River clay"],
+    ans: 1,
+    right: "🍚 Correct! Sticky rice porridge was used in mortar, making it incredibly strong. Some sections are still standing today. Ancient China had excellent taste in building supplies.",
+    wrong: "❌ Incorrect! It was sticky rice soup — giving the Great Wall both structural integrity and, technically, mild nutritional value."
+  },
+  {
+    q: "⚡ Which ancient civilisation invented the concept of a 7-day week?",
+    opts: ["Romans", "Egyptians", "Babylonians", "Greeks"],
+    ans: 2,
+    right: "✨ Correct! The Babylonians gave us the 7-day week, based on the celestial bodies they could see. Every Monday you've ever suffered through is their fault.",
+    wrong: "❌ Nope! Thank the Babylonians for the 7-day week. Every grim Monday morning is their ancient contribution to your suffering."
+  },
+  {
+    q: "🧂 Roman soldiers were sometimes partially paid in salt. This is where which English word comes from?",
+    opts: ["Soldier", "Salary", "Salute", "Salvation"],
+    ans: 1,
+    right: "💰 Correct! 'Salary' comes from the Latin 'salarium' — payment in salt. Romans were literally worth their salt, and so are you.",
+    wrong: "❌ It's 'salary'! From the Latin 'salarium'. Romans were literally paid in salt. Imagine your payslip saying '5kg NaCl deposited.'"
+  },
+  {
+    q: "🌊 The Library of Alexandria is famous for being destroyed. Who DIDN'T destroy it?",
+    opts: ["Julius Caesar (fire)", "Theophilus (Christian bishop)", "Arab Caliph Omar", "Napoleon Bonaparte"],
+    ans: 3,
+    right: "🎓 Brilliant! Napoleon gets blamed for many things but NOT this one. The Library was damaged multiple times over centuries — Caesar's fire, religious conflicts, and the Arab conquest all played roles.",
+    wrong: "❌ Actually Napoleon didn't destroy it! The Library suffered multiple attacks over centuries. It's history's most repeatedly-destroyed building."
+  },
+  {
+    q: "👑 Cleopatra was actually of which ethnic origin?",
+    opts: ["Egyptian", "Nubian", "Greek/Macedonian", "Roman"],
+    ans: 2,
+    right: "🇬🇷 Correct! Cleopatra was Greek-Macedonian — a descendant of Ptolemy I, one of Alexander the Great's generals. She was actually the FIRST of her dynasty to bother learning Egyptian. The queen of Egypt who learned Egyptian as a second language.",
+    wrong: "❌ Surprise! Cleopatra was actually Greek-Macedonian. She was the FIRST of her dynasty to even learn the Egyptian language. The queen of Egypt who spoke Egyptian as a second language."
+  }
+];
+
+const timelineData = [
+  { year: "~3100 BCE", title: "Egypt Unified — Pharaoh Narmer Does Merger", desc: "Upper and Lower Egypt combine under one ruler, inventing the concept of wearing two crowns and solving nothing.", funny: "📊 Historians estimate this merger had better results than most corporate acquisitions. Nobody was made redundant. Well, some were. Brutally." },
+  { year: "~2560 BCE", title: "Great Pyramid of Giza: 'Just a Small Project'", desc: "Approximately 100,000 workers, 20 years, and 2.3 million stone blocks later, Pharaoh Khufu has a tomb nobody can enter.", funny: "🏗️ The workers were NOT slaves — they were paid employees who received beer rations. They even went on strike once. In 1170 BCE. Ancient Egypt had labour rights before most of the world." },
+  { year: "~600 BCE", title: "Solon Invents Democracy — Immediately Has Regrets", desc: "Athens experiments with letting people vote. The first thing they vote to do is exile Solon.", funny: "🗳️ Greek democracy excluded women, slaves, and foreigners — so roughly 80% of the population. Still, two steps forward..." },
+  { year: "326 BCE", title: "Alexander the Great Reaches India, Army Says 'No'", desc: "After conquering most of the known world, Alexander's exhausted army refuses to march further east. He cries in his tent.", funny: "😤 Alexander reportedly wept because he had no more worlds to conquer. His army reportedly did not share this concern and just wanted to go home." },
+  { year: "44 BCE", title: "Julius Caesar: Stabbed 23 Times, Only 1 Fatal", desc: "Sixty senators with poor coordination assassinate Rome's dictator. Forensic historians call it 'the most unnecessarily thorough murder in ancient history.'", funny: "📋 A Roman physician concluded that of 23 wounds, only the second one to the chest was fatal. The other 22 were apparently just senators being dramatic." },
+  { year: "30 BCE", title: "Cleopatra: The Last Pharaoh Exits Dramatically", desc: "Egypt's last pharaoh takes her own life, ending 3,000 years of pharaonic rule. The snake used has been trending ever since.", funny: "🐍 The asp story may be a myth — she may have used poison. Either way, historians agree she died as dramatically as she lived, which is on-brand." },
+  { year: "79 CE", title: "Pompeii: History's Most Ironic Resort Town", desc: "Vesuvius erupts and perfectly preserves a Roman city, including graffiti, fast-food counters, and some very awkward frescoes.", funny: "🌋 Pompeii had a TripAdvisor-style graffiti system on walls — restaurants were rated, politicians slandered, and someone wrote 'Restituta, take off your tunic please' on a wall. 2,000 years later, surprisingly relatable." },
+  { year: "~1000 CE", title: "Vikings Discover America — Then Immediately Leave", desc: "Leif Erikson reaches North America roughly 500 years before Columbus. They call it Vinland, argue with the locals, and sail home.", funny: "⚡ The Norse abandoned North America largely because of conflicts with Indigenous peoples. Columbus later received all the credit for a continent he was not actually the first to reach. History is complicated." }
+];
+
+const artifactData = [
+  { emoji: "🏺", name: "Rosetta Stone", origin: "Egypt, 196 BCE", body: "A granodiorite stele inscribed with the same decree in three scripts: Ancient Egyptian hieroglyphs, Demotic, and Ancient Greek. Discovered in 1799 by French soldiers digging fortifications — because soldiers always find the best stuff while doing unrelated activities.", funny: "🔑 Without the Rosetta Stone, we wouldn't be able to read hieroglyphics at all. Imagine losing the instruction manual for an entire civilisation's writing. Egypt did exactly that for 1,400 years." },
+  { emoji: "⚗️", name: "Dead Sea Scrolls", origin: "Judea, ~150 BCE", body: "Ancient manuscripts discovered by a Bedouin shepherd boy in 1947, who threw a stone into a cave and heard pottery break. They contain the oldest known surviving copies of biblical texts, hidden for 2,000 years in desert caves.", funny: "🐐 The shepherd boy who discovered them initially sold them to an antiques dealer for less than £30. Some of the oldest surviving biblical texts. £30. The antiques dealer later sold them for significantly more." },
+  { emoji: "⚱️", name: "Terracotta Army", origin: "China, ~210 BCE", body: "Emperor Qin Shi Huang was buried with over 8,000 life-sized terracotta soldiers, 130 chariots, and 670 horses — all unique, all facing east. Discovered in 1974 by farmers digging a well. No two soldier faces are the same.", funny: "💅 The soldiers were originally painted in vivid colours that faded when exposed to air. The first emperor of China commissioned the ultimate action figure collection and we keep excavating more of it." },
+  { emoji: "🗿", name: "Easter Island Moai", origin: "Easter Island, ~1250-1500 CE", body: "900+ monolithic human figures carved by the Rapa Nui people, averaging 13 feet tall and 14 tons each. How they moved them across the island remains debated — oral tradition says they 'walked.'", funny: "🚶 Recent experiments showed the statues COULD be moved upright using ropes and rocking motions — essentially walking. The Rapa Nui weren't exaggerating. The statues did walk, technically." },
+  { emoji: "🏛️", name: "The Antikythera Mechanism", origin: "Greece, ~100 BCE", body: "An ancient Greek analogue computer discovered in a shipwreck in 1901. It tracked astronomical cycles, eclipses, and possibly the Olympic Games — 1,400 years before anything of similar complexity was made in Europe.", funny: "🤖 It is literally an ancient computer. The Greeks made a functioning mechanical computer in 100 BCE and then apparently lost the instruction manual so completely that we forgot computers were possible for 1.4 millennia." },
+  { emoji: "📜", name: "Code of Hammurabi", origin: "Babylon, ~1754 BCE", body: "One of the earliest and most complete written legal codes, inscribed on a 7.5-foot basalt stele. It includes 282 laws covering everything from wages to medical malpractice — with punishments of legendary severity.", funny: "⚖️ Law 196: 'If a man put out the eye of another man, his eye shall be put out.' Extremely direct. No ambiguity. Ancient Babylon had a 'no excuses' policy that modern lawyers find deeply inconvenient." },
+  { emoji: "🗺️", name: "The Peutinger Map", origin: "Roman Empire, ~4th century CE", body: "A medieval copy of an ancient Roman road map showing the entire known world from Britain to India — but stretched horizontally to fit a scroll. Everything is distorted beyond recognition, yet roads are accurately placed.", funny: "🧭 The Mediterranean Sea is so squashed it barely exists. Britain is tiny. India is enormous. It's history's first Google Maps, and like early Google Maps, it technically works but looks nothing like reality." },
+  { emoji: "💎", name: "Hope Diamond's Ancient Twin", origin: "India, ~1600s CE", body: "The Hope Diamond, one of history's most infamous gems, originated from the Kollur Mine in India and was likely 'acquired' by the French merchant Tavernier. It has since been associated with a suspiciously high number of disasters.", funny: "👁️ Previous owners include King Louis XIV, King Louis XVI (guillotined), and a series of people who suffered remarkable bad luck. The Smithsonian owns it now and everything seems fine. So far." }
+];
+
+const weirdoFacts = [
+  { icon: "🦷", civ: "Roman Empire", text: "Romans whitened their teeth using urine. Urine contains ammonia, which genuinely works as a bleach. Portuguese urine was considered premium quality and imported specifically for dental use. The Romans had excellent teeth and terrible boundaries." },
+  { icon: "🍻", civ: "Ancient Egypt", text: "Egyptian pyramid workers were paid partly in beer — about 4-5 litres per day. This was not recreational; beer was safer than Nile water and a major calorie source. Ancient Egypt had the world's first employee benefits package." },
+  { icon: "💀", civ: "Ancient Sparta", text: "Spartan boys were deliberately underfed and encouraged to steal food — but punished if caught. One famous story tells of a boy who stole a fox, hid it under his cloak, and let it eat his insides rather than be discovered. Sparta had deeply questionable parenting strategies." },
+  { icon: "📬", civ: "Ancient Rome", text: "Ancient Romans had a form of postal system and graffiti culture so developed that we have Pompeii election campaign slogans, restaurant reviews, lost pet notices, and one wall that simply reads: 'Gaius Pumidius Diphilus was here' — dated 78 BCE. Some things never change." },
+  { icon: "🐦", civ: "Ancient Greece", text: "Ancient Greeks believed that redheads turned into vampires after death. This may explain why Achilles (possibly described as fair or red-haired) was so dramatic — he was pre-emptively managing his reputation." },
+  { icon: "🌊", civ: "Viking Age", text: "Vikings used the gemstone sunstone to navigate when the sun was hidden by clouds. Recent experiments confirmed that calcite crystite acts as a polarising filter that can locate the sun's position even in fog — they had a literal magical navigation crystal." },
+  { icon: "🧴", civ: "Ancient Egypt", text: "Egyptian men and women both wore kohl eyeliner — not purely for aesthetics. Kohl acted as a UV blocker in the Egyptian sun and had antibacterial properties. Cleopatra's iconic eyeliner was also SPF protection. Ancient beauty with ancient science." },
+  { icon: "🤝", civ: "Ancient Babylon", text: "Ancient Babylonians used to return borrowed items with a legal receipt written in cuneiform clay tablets. Thousands survive. We know what a Babylonian merchant borrowed 4,000 years ago. History's first receipts are about goats." },
+  { icon: "🏃", civ: "Ancient Greece", text: "The original Olympic Games included an event where soldiers ran in full armour — helmet, shield, and greaves. Another event was chariot racing. And another was a pentathlon. The ancient Olympics also had a tradition of competing completely naked. All of these facts are true simultaneously." },
+  { icon: "🐊", civ: "Ancient Egypt", text: "Egyptians had a crocodile god, Sobek, who was worshipped at a temple in Faiyum where sacred crocodiles were kept, fed, adorned with jewellery, and mummified when they died. Thousands of crocodile mummies have been found. Ancient Egypt was a very committed civilisation." },
+  { icon: "🍷", civ: "Ancient Rome", text: "Rich Romans sometimes drank wine sweetened with lead acetate — literally called 'sugar of lead' — because it tasted sweeter than honey. Lead poisoning may have contributed to declining decision-making in the later Roman Empire. The fall of Rome possibly involved a wine subscription." },
+  { icon: "📚", civ: "Islamic Golden Age", text: "The House of Wisdom in 9th-century Baghdad was the world's largest library and learning centre, housing scholars of mathematics, astronomy, medicine, and philosophy from across the world. Al-Khwarizmi invented algebra there. The word 'algebra' is Arabic. So is 'algorithm' (from his name)." }
+];
+
+// ---- QUIZ LOGIC ----
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function renderQuiz() {
+  const prog = document.getElementById('quizProgress');
+  prog.innerHTML = quizData.map((_, i) => `<div class="quiz-pip ${i < currentQ ? 'done' : i === currentQ ? 'current' : ''}"></div>`).join('');
+
+  if (currentQ >= quizData.length) {
+    document.getElementById('quizQ').innerHTML = `<div class="score-display">Final Score: ${score} / ${quizData.length}</div>`;
+    const msgs = [
+      ["0-2", "Even the Oracle of Delphi is confused. Keep studying! 📜"],
+      ["3-4", "Caesar would give you a C. That's still passing. 🏛️"],
+      ["5-6", "Cleopatra approves. You have potential. 👑"],
+      ["7-8", "Perfect score! You are a true Scholar of the Ancients. Juhi-level history achieved. 🎓✨"]
+    ];
+    const tier = score <= 2 ? 0 : score <= 4 ? 1 : score <= 6 ? 2 : 3;
+    document.getElementById('quizOpts').innerHTML = `<div style="text-align:center; font-family:'Playfair Display',serif; font-style:italic; font-size:1.1rem; grid-column:1/-1; padding:20px; color:var(--ink-faded);">${msgs[tier][1]}</div>`;
+    document.getElementById('quizMsg').style.display = 'none';
+    document.getElementById('quizNext').style.display = 'none';
+    return;
+  }
+
+  const q = quizData[currentQ];
+  document.getElementById('quizQ').innerHTML = q.q;
+  document.getElementById('quizOpts').innerHTML = q.opts.map((o, i) =>
+    `<button class="quiz-btn" onclick="answerQ(${i})">${String.fromCharCode(65+i)}. ${o}</button>`
+  ).join('');
+  document.getElementById('quizMsg').style.display = 'none';
+  document.getElementById('quizMsg').textContent = '';
+  document.getElementById('quizNext').style.display = 'none';
+  answered = false;
+}
+
+function answerQ(idx) {
+  if (answered) return;
+  answered = true;
+  const q = quizData[currentQ];
+  const btns = document.querySelectorAll('.quiz-btn');
+  btns.forEach(b => b.disabled = true);
+  const isRight = idx === q.ans;
+  btns[idx].classList.add(isRight ? 'correct' : 'wrong');
+  if (!isRight) btns[q.ans].classList.add('correct');
+  if (isRight) score++;
+  const msg = document.getElementById('quizMsg');
+  msg.textContent = isRight ? q.right : q.wrong;
+  msg.style.display = 'block';
+  document.getElementById('quizNext').style.display = 'block';
+}
+
+function nextQuestion() {
+  currentQ++;
+  renderQuiz();
+}
+
+renderQuiz();
+
+// ---- TIMELINE ----
+const tl = document.getElementById('timelineEl');
+timelineData.forEach((ev, i) => {
+  const div = document.createElement('div');
+  div.className = 't-event';
+  div.innerHTML = `
+    <div class="t-dot">⚡</div>
+    <span class="t-year">${ev.year}</span>
+    <div class="t-title">${ev.title}</div>
+    <div class="t-desc">${ev.desc}</div>
+    <div class="t-funny">${ev.funny}</div>
+  `;
+  div.onclick = () => div.classList.toggle('open');
+  tl.appendChild(div);
+});
+
+// ---- MUSEUM ----
+const mg = document.getElementById('museumGrid');
+artifactData.forEach((a, i) => {
+  const card = document.createElement('div');
+  card.className = 'artifact-card';
+  card.innerHTML = `<span class="artifact-emoji">${a.emoji}</span><div class="artifact-name">${a.name}</div><div class="artifact-origin">${a.origin}</div>`;
+  card.onclick = () => showModal(a.emoji, a.name, a.origin, a.body, a.funny);
+  mg.appendChild(card);
+});
+
+// ---- FACTS ----
+const fg = document.getElementById('factsGrid');
+weirdoFacts.forEach((f, i) => {
+  const card = document.createElement('div');
+  card.className = 'scroll-card';
+  card.setAttribute('data-num', i + 1);
+  card.innerHTML = `<span class="scroll-icon">${f.icon}</span><p class="scroll-fact-text">${f.text}</p><div class="scroll-civ">📍 ${f.civ}</div>`;
+  fg.appendChild(card);
+});
+
+// ---- MODAL ----
+function showModal(emoji, title, origin, body, funny) {
+  document.getElementById('modalEmoji').textContent = emoji;
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalOrigin').textContent = origin;
+  document.getElementById('modalBody').textContent = body;
+  document.getElementById('modalFunny').textContent = funny;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modal').classList.remove('open');
+}
+
+function showJuhiModal() {
+  showModal('📜', 'A Note from the Ancient Times', 'Filed under: Important Dispatches',
+    'This entire newspaper was commissioned, typeset, and published in the great tradition of the ancient scribes — for one purpose only: to celebrate Juhi Jha, Masters of History, Knower of Ancient Things, and person of exceptional historical taste.',
+    '🌟 May your thesis be brilliant, your sources well-cited, and your knowledge of ancient civilisations forever a source of wonder (and excellent party conversation). The ancient world is lucky to have such a dedicated student. And so, frankly, is whoever gets to know you. — The Ancient Times Editorial Board'
+  );
+}
+
+// ---- NAV ----
+function showSection(id, btn) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  document.querySelectorAll('.nav-strip button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (id === 'quiz') renderQuiz();
+}
+</script>
+
+</body>
+</html>
